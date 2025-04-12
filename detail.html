@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Business Record Details</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      background-color: #f1f5f9;
+      font-family: 'Segoe UI', sans-serif;
+      color: #1e293b;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      margin-bottom: 20px;
+      color: #4f46e5;
+    }
+    .info-row {
+      display: flex;
+      margin-bottom: 15px;
+    }
+    .info-label {
+      width: 180px;
+      font-weight: 600;
+      color: #64748b;
+    }
+    .info-value {
+      flex: 1;
+    }
+    .back-btn {
+      margin-top: 30px;
+      background-color: #4f46e5;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="detail-container">
+    <h1>Business Record Details</h1>
+    <div id="record-details">
+      <!-- Full details will be populated here -->
+    </div>
+    <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+  </div>
+
+  <script>
+    const record = JSON.parse(localStorage.getItem("selectedRecord"));
+    const detailsContainer = document.getElementById("record-details");
+
+    if (record) {
+      for (const key in record) {
+        const row = document.createElement("div");
+        row.className = "info-row";
+        row.innerHTML = `<div class="info-label">${key}</div><div class="info-value">${record[key]}</div>`;
+        detailsContainer.appendChild(row);
+      }
+    } else {
+      detailsContainer.innerHTML = "<p>No record found.</p>";
+    }
+  </script>
+</body>
+</html>
